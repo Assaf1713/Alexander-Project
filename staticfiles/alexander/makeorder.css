@@ -1,0 +1,446 @@
+stocks.css
+
+/* Style for the stocks table */
+#stock-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    display: flex;
+}
+
+/* Style for table header */
+#stock-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 2px solid #333;
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #333;
+    
+}
+
+/* Style for table rows */
+#stock-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+
+}
+
+/* Style for table rows on hover */
+#stock-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: orange;
+
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+}
+
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.search-container form {
+    display: flex;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-container input[type="text"] {
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 50px;
+    background-color: #fff;
+    margin-right: 10px;
+    width: 300px;
+    transition: width 0.4s ease-in-out;
+    order: 2;
+}
+
+.search-container input[type="text"]:focus {
+    width: 400px;
+}
+
+.search-container button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    order: 1;
+}
+
+.search-container button:hover {
+    background-color: #feb4ff;
+    color: #333;
+}
+
+/* Style for tthe quantity form */
+
+#input_form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#input_form form {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: row-reverse; 
+}
+
+#input_form label {
+    font-size: 16px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+    margin-right: 10px;
+    order: 2;
+}
+
+
+
+#input_form input {
+    margin-right: 10px; 
+    order: 1; 
+    padding: 5px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    width: 60px;
+    text-align: center;
+    font-size: 16px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+
+}
+
+
+
+#input_form button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 12px;
+    margin: auto;
+    margin-right: 10px;
+}
+
+#stock-table button[type="submit"] {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#stock-table input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.temp-order-container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    direction: rtl;
+
+}
+
+.temp-order-container h3 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.supplier-order-section {
+    margin-bottom: 30px;
+}
+
+.supplier-order-section h2 {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'fredoka', sans-serif;
+
+
+}
+
+.supplier-order-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.supplier-order-section th,
+.supplier-order-section td {
+    border: 2px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+
+}
+
+.supplier-order-section th {
+    background-color: #f4f4f4;
+    font-weight: 600;
+}
+
+.supplier-order-section tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.supplier-order-section tr:hover {
+    background-color: #f1f1f1;
+}
+
+.supplier-order-section form {
+    display: inline;
+}
+
+.supplier-order-section button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.supplier-order-section button:hover {
+    background-color: #45a049;
+}
+
+
+#temp-order-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+#temp-order-title h3 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+    font-family: 'fredoka', sans-serif;
+}
+
+
+#summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+
+}
+
+.total-order-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#summary .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Adds space between the buttons */
+}
+
+#summary form {
+    margin: 0;
+}
+
+#summary button {
+    background-color: orange;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 16px;
+    text-align: center;
+    
+}
+
+#summary button:hover {
+    background-color: darkorange;
+    
+}
+
+/* #submit-order-button {
+    background-color: #4CAF50;
+} */
+
+#summary p {
+    font-size: 18px;
+    color: #777;
+    text-align: center;
+}
+
+#remove-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+
+}
+
+.empty-order{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    
+    background-color: #f9f9f9;
+}
+.empty-order p {
+    font-weight: 400;
+    color: #333;
+    font-family: 'fredoka', sans-serif;
+}
+
+/* order history */
+
+
+/* Style for the orders table */
+#order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style for table header */
+#order-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+
+}
+
+/* Style for table rows */
+#order-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    margin-right: auto;
+    font-size: 18px;
+    font-family: 'fredoka', sans-serif;
+
+}
+
+/* Style for table rows on hover */
+#order-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* Style for the eye icon */
+#eye img {
+    width: 30px;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 1rem;
+
+
+}
+
+
+#stock-table{
+margin-top: 20px;
+margin-bottom: 40px;
+}
+
+#stock-table th{
+background-color: #f2f2f2;
+text-align: center;
+}
+
+#stock-table td{
+text-align: center;
+}
+
+
+
+

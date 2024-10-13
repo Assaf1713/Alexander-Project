@@ -1,0 +1,55 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+New Order Page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/Create_Order.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="create-order-page">
+    <header id="title">
+        <h2 class="page-title">צור הזמנה חדשה</h2>
+    </header>
+    <div class="form-container">
+        <form method="post" action="{% url 'Create-Order-Page' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.Order_Type.label_tag }}
+                {{ form.Order_Type }}
+                {{ form.Order_Type.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.IsPaid.label_tag }}
+                {{ form.IsPaid }}
+                {{ form.IsPaid.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Customer_Name.label_tag }}
+                {{ form.Customer_Name }}
+                {{ form.Customer_Name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Customer_Last_Name.label_tag }}
+                {{ form.Customer_Last_Name }}
+                {{ form.Customer_Last_Name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.PickUp_Date.label_tag }}
+                {{ form.PickUp_Date }}
+                {{ form.PickUp_Date.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Comments.label_tag }}
+                {{ form.Comments }}
+                {{ form.Comments.errors }}
+            </div>
+            <button type="submit" class="btn">צור הזמנה</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

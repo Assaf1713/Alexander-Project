@@ -1,0 +1,67 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+ add raw material page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/New_Raw_Material.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="highlights">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'control-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לעמוד הבקרה</span>
+            </a>
+            <h2 class="page-title"> צור חומר גלם חדש </h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    
+
+<section id="create-raw-material-page">
+
+    <div class="form-container">
+        <form method="post" action="{% url 'Add-Raw-Material-Page' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.Material_Name.label_tag }}
+                {{ form.Material_Name }}
+                {{ form.Material_Name.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Lower_Barrier.label_tag }}
+                {{ form.Lower_Barrier }}
+                {{ form.Lower_Barrier.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Unit.label_tag }}
+                {{ form.Unit }}
+                {{ form.Unit.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Price.label_tag }}
+                {{ form.Price }}
+                {{ form.Price.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Supplier.label_tag }}
+                {{ form.Supplier }}
+                {{ form.Supplier.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Quantity.label_tag }}
+                {{ form.Quantity }}
+                {{ form.Quantity.errors }}
+            </div>
+            <button type="submit" class="btn"> הוסף חומר גלם </button>
+        </form>
+    </div>
+</section>
+</section>
+{% endblock %}

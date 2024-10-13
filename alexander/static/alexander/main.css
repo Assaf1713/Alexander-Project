@@ -1,0 +1,187 @@
+
+#title {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    
+}
+
+#title img {
+    width: 20%;
+    height: 5%;
+    margin: auto;
+    display: flex;
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.all-highlights-container{
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    justify-content: center;
+   
+
+}
+
+.highlights-header{
+    background-color: #333;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin: auto;
+    direction: rtl;
+    text-align: center;
+}
+
+.highlights-header h3{
+    color: #f2f2f2;
+    font-size: 35px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    margin: auto;
+    padding: 20px;
+
+    
+}
+
+#highlights-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Style for table header */
+#highlights-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-bottom: 3px solid #ddd;
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+
+}
+
+/* Style for table rows */
+#highlights-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    margin-right: auto;
+    font-size: 18px;
+    font-family: 'fredoka', sans-serif;
+    border: 2px solid #ddd;
+
+}
+
+/* Style for table rows on hover */
+#highlights-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+.all-cakes-container{
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 50%;
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    justify-content: center;
+   
+    
+}
+
+.all-cakes-container h3{
+    color: #333;
+    font-size: 35px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+
+}
+
+#cakes-table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #f2f2f2;  
+}
+
+
+#cakes-table thead {
+    background-color: #f4f4f4;
+}
+
+#cakes-table th, #cakes-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+#cakes-table th {
+    background-color: #333;
+    color: white;
+}
+
+#cakes-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#cakes-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.cake-row td {
+    text-align: center;
+}
+
+.cake-row td:first-child {
+    font-weight: bold;
+}
+

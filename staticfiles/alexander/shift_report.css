@@ -1,0 +1,114 @@
+body {
+    font-family: 'fredoka', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+#title {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    width: 100%;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 35px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #333;
+}
+
+
+
+.summary, .employee-stats {
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f2f2f2;
+    box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    direction: rtl;
+}
+
+.summary h3, .employee-stats h3 {
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #555;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+.summary p {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.summary p span {
+    font-weight: 600;
+    color: #555;
+}
+
+.employee-stats table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    direction: rtl;
+}
+
+.employee-stats table thead {
+    background-color: #f4f4f4;
+}
+
+.employee-stats table th, 
+.employee-stats table td {
+    padding: 12px 15px;
+    text-align: right;
+    border-bottom: 1px solid #ddd;
+}
+
+.employee-stats table th {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.employee-stats table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.employee-stats table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.employee-stats table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+#details {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+    direction: rtl;
+}
+
+.chart-container {
+    max-width: 500px;  /* Adjust the max-width */
+    margin: auto;
+}
+
+
+
+
+

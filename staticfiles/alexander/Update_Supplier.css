@@ -1,0 +1,269 @@
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: orange;
+    position: relative; 
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+#back-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#back-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+
+/* body */
+
+
+
+#supplier-detail-title {
+    background-color: #f9f9f9;
+    border: 3px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 300;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    direction: rtl;
+    
+
+}
+
+#supplier-detail-title strong {
+    font-weight: 400;
+}
+
+#supplier-order-table h2{
+    font-size: 30px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    direction: rtl;
+}
+
+
+
+#supplier-order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    direction: rtl;
+    background-color: #f9f9f9;
+    border: 3px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 300;
+    color: #333;
+  
+
+
+
+}
+
+/* Style for table header */
+#supplier-order-table th {
+    background-color: #ddd;
+    text-align: left;
+    padding: 8px;
+    border-bottom: 2px solid #ddd;
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+
+}
+
+/* Style for table rows */
+#supplier-order-table td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    margin-right: auto;
+    font-size: 18px;
+    font-family: 'fredoka', sans-serif;
+
+}
+
+/* Style for table rows on hover */
+#supplier-order-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+#detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    position: relative; 
+
+}
+
+
+#no-order{
+    font-size: 15px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    direction: rtl;
+
+}
+
+
+
+#eye img {
+    width: 30px;
+    height: auto;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 1rem;
+
+
+}
+
+
+
+/* form container styling */
+
+.form-container {
+    width: 60%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    direction: rtl;
+    background-color: #f9f9f9;
+    border: 3px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 300;
+    color: #333;
+    margin-left: auto;
+
+
+}
+
+/* Form title styling */
+#update-title {
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.form-group label {
+        font-family: 'Fredoka', sans-serif;
+        color: #333;
+        margin-bottom: 5px;
+        font-size: 20px;
+        font-weight: 500;
+        text-align: right;
+        order: 1;
+        margin-left: auto;
+    }
+
+
+/* Input styling */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    order: 2;
+}
+
+.form-group input:focus {
+    border-color: #ffa500;
+    outline: none;
+}
+
+/* Error message styling */
+.form-group .errorlist {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* Submit button styling */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #ffa500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #ff8c00;
+}

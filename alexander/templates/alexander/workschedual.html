@@ -1,0 +1,312 @@
+{% extends "page.html" %}
+{%load static %}
+{% load filters %}
+
+{% block title %}
+work schedual
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/workschedual.css" %}" />
+{% endblock %}
+{%block content %}
+ <section id="schedual_page">
+  <header id="title">
+    <h2 class="page-title"> משמרות עובדים </h2>
+</header>
+  {% if logged_in_user.Type == 'ad' %}
+  <section class="schedual-section" id="admin-section">
+    <header class="section-title">
+      <h2> טבלת העדפות עובדים </h2>
+      <p> היי {{ logged_in_user.Employee.First_Name }} , כאן ניתן לצפות בהעדפות העובדים המתעדכנות, לאפס העדפות לפני שיבוץ חדש ולייצר לו"ז משמרות</p>  
+    </header>
+    <div class="preferences">
+        <table>
+        <thead>
+            <tr>
+                <th></th>
+                {% for day, date in next_week_dates.items %}
+                <th> {{ day }} <br> {{ date|date:"d/m/Y" }} </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for time_of_day, days in preferences_by_time_and_user.items %}
+                <tr>
+                    <td>{{ time_of_day }}</td>
+                    {% for day in day_lst %}
+                        <td>
+                            {% for key, value_lst in days.items %}
+                                {% if key == day %}
+                                    {% for value in value_lst %}
+                                        {{ value }} <br>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="actions">
+        <form method="post" action = "{% url 'reset-preferences'%}">
+            {% csrf_token %}
+            <button type="submit" id="reset">אפס העדפות</button>
+        </form>
+        <form method="get" action = "{% url 'shift-builder-tool-page'%}">
+            {% csrf_token %}
+            <button type="submit">כלי בניית המשמרות</button>
+        </form>
+    </div>
+    <div class="week-schedule">
+        <div class='tabs-titles'>
+        <h2> צפה/ערוך משמרות לשבוע הנוכחי/הבא </h2>
+        <p><br> "כל תא בטבלה מייצג משמרת. בכל תא תוכל לצפות בעובדים המשובצים למשמרת זו. על מנת לשבץ עובדים בצורה ידנית למשמרת לחץ על הכפתור המתאים בתא או השתמש ב"כלי בניית המשמרות</p>
+        </div>
+        <div class="tabs">
+            <button class="tab-button active" data-tab="current-week">שבוע נוכחי</button>
+            <button class="tab-button" data-tab="next-week">שבוע הבא</button>
+        </div>
+        <div class="tab-content" id="current-week">
+            <h3> טבלת משמרות עבודה לשבוע הנוכחי </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        {% for day, date in this_week_dates.items %}
+                        <th> {{ day }} <br> {{ date|date:"d/m/Y" }} </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for time_of_day, key_day in this_week_shifts.items %}
+                        <tr>
+                            <td>{{ time_of_day }}</td>
+                            {% for day, data in key_day.items %}
+                                <td>
+                                    {% if data.employees %}
+                                        {% for user in data.employees %}
+                                            {{ user }}  <br>
+                                        {% endfor %}
+                                        <a href="{{ data.shift.get_absolute_url }}" class="add-employees"> פרטים </a>
+                                    {% else %}
+                                        <p id="no-employees"> אין עובדים ששובצו למשמרת זו </p>
+                                        <a href="{{ data.shift.get_absolute_url }}" class="add-employees">שבץ ידנית </a>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-content" id="next-week" style="display:none;">
+            <h3> טבלת משמרות עבודה לשבוע הבא </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        {% for day, date in next_week_dates.items %}
+                        <th> {{ day }} <br> {{ date|date:"d/m/Y" }} </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for time_of_day, key_day in next_week_shifts.items %}
+                        <tr>
+                            <td>{{ time_of_day }}</td>
+                            {% for day, data in key_day.items %}
+                                <td>
+                                    {% if data.employees %}
+                                        {% for user in data.employees %}
+                                            {{ user }}  <br>
+                                        {% endfor %}
+                                        <a href="{{ data.shift.get_absolute_url }}" class="add-employees"> פרטים </a>
+                                    {% else %}
+                                        <p id="no-employees"> אין עובדים ששובצו למשמרת זו </p>
+                                        <a href="{{ data.shift.get_absolute_url }}" class="add-employees">שבץ ידנית </a>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="all-orders">
+            <a href="{% url 'all-shifts-page' %}" class='btn'> צפה בכל המשמרות </a>
+        </div>
+        <br>
+        <br>
+    </div>
+    
+
+  </section>
+  {%  elif logged_in_user.Type == 'cs'   %}
+  <section class="schedual-section" id="employee-section">
+    <header class="section-title">
+      <h2> חלון עובד קופה </h2>
+      <p>  כאן תוכל לראות את המשמרות שלך ולעדכן את ההעדפות שלך למשמרות</p>
+    </header>
+    <div class= 'preferences'>
+      <form method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    {% for day, date in next_week_dates.items %}
+                    <th> {{ day }} <br> {{ date|date:"d/m/Y" }} </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="time-of-day">בוקר</td>
+                    {% for day in forms_by_preference.items %}
+                        {% if day.0.0 == 'בוקר' %}
+                            {% for preference, form in day.1 %}
+                                <td>
+                                    {{ form.Is_Prefered }}
+                                </td>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr>
+                    <td class="time-of-day">ערב</td>
+                    {% for day in forms_by_preference.items %}
+                        {% if day.0.0 == 'ערב' %}
+                            {% for preference, form in day.1 %}
+                                <td>
+                                    
+                                    {{ form.Is_Prefered }}
+                                </td>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit"> שלח העדפות </button>
+    </form>
+    </div>
+  </section>
+  <section class="shift-table">
+  <div class="week-schedule">
+    <div class='tabs-titles'>
+    <h2> צפה במשמרות לשבוע הנוכחי/הבא </h2>
+    <p><br>  כל תא בטבלה מייצג משמרת. בכל תא תוכל לצפות בעובדים המשובצים למשמרת זו | המשמרות שבהם שובצת צבועות בתכלת</p>
+    </div>
+    <div class="tabs">
+        <button class="tab-button active" data-tab="current-week">שבוע נוכחי</button>
+        <button class="tab-button" data-tab="next-week">שבוע הבא</button>
+    </div>
+    <div class="tab-content" id="current-week">
+        <h3> טבלת משמרות עבודה לשבוע הנוכחי </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    {% for day, date in this_week_dates.items %}
+                    <th> {{ day }} <br> {{ date|date:"d/m/Y" }} </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for time_of_day, key_day in this_week_shifts.items %}
+                    <tr>
+                        <td>{{ time_of_day }}</td>
+                        {% for day, data in key_day.items %}
+                            <td class="{% if data.employees|is_user_in_shift:logged_in_user %}highlight{% endif %}">
+                                {% if data.employees %}
+                                    {% for user in data.employees %}
+                                        {{ user }}  <br>
+                                    {% endfor %}
+                                {% else %}
+                                    <p id="no-employees"> אין עובדים ששובצו למשמרת זו </p>
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-content" id="next-week" style="display:none;">
+        <h3> טבלת משמרות עבודה לשבוע הבא </h3>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    {% for day, date in next_week_dates.items %}
+                    <th> {{ day }} <br> {{ date|date:"d/m/Y" }} </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for time_of_day, key_day in next_week_shifts.items %}
+                    <tr>
+                        <td>{{ time_of_day }}</td>
+                        {% for day, data in key_day.items %}
+                        <td class="{% if data.employees|is_user_in_shift:logged_in_user %}highlight{% endif %}">
+                                {% if data.employees %}
+                                    {% for user in data.employees %}
+                                        {{ user }}  <br>
+                                    {% endfor %}
+                                   
+                                {% else %}
+                                    <p id="no-employees"> אין עובדים ששובצו למשמרת זו </p>
+                                    
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+  </section>
+  {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </section>   
+
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var tabs = document.querySelectorAll('.tab-button');
+            var tabContents = document.querySelectorAll('.tab-content');
+        
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    tabs.forEach(function(t) { t.classList.remove('active'); });
+                    tabContents.forEach(function(tc) { tc.style.display = 'none'; });
+        
+                    tab.classList.add('active');
+                    document.getElementById(tab.dataset.tab).style.display = 'block';
+                });
+            });
+        
+            // Initially display the first tab
+            tabs[0].click();
+        });
+</script>
+{% endblock %}

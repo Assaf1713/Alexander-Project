@@ -1,0 +1,158 @@
+{% extends "page.html" %}
+{% load static %}
+{% load filters %}
+{% block title %}
+    raw materials order page
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'alexander/makeorder.css' %}" />
+{% endblock %}
+{% block content %}
+    <section id="make-order-page">
+        <header id="title">
+            <h2 class="page-title">צור הזמנה לספקים</h2>
+        </header>
+    <section id='temp_order'>
+        <div id='input_form'>
+            <form method="post" action="{% url 'make-order-page' %}">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    {{ form2.Item }}
+                    {{ form2.Item.label_tag }}
+                    
+                </div>
+                
+                <div class="form-group">
+                    {{ form2.Quantity }}
+                    {{ form2.Quantity.label_tag }}
+                   
+                </div>
+                
+                <button type="submit" class="btn">הוסף להזמנה</button>
+            </form>
+            
+        </div>
+        <div class="temp-order-container">
+            <div id="temp-order-title">
+            <h3>הזמנה טיוטה</h3>
+            </div>
+            {% if temp_order %}
+                {% for supplier_id, items in temp_order.items %}
+                    <div class="supplier-order-section">
+                        <h2>שם הספק : {{ suppliers | get_supplier_name:supplier_id }} </h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>מק"ט</th>
+                                    <th>שם פריט</th>
+                                    <th>כמות</th>
+                                    <th>יחידה</th>
+                                    <th>מחיר</th>
+                                    <th> סה"כ להזמנה </th>
+                                    <th>הסר פריט</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                    <tr>
+                                        <td>{{ item.item_id }}</td>
+                                        <td>{{ item.item_name }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>{{ item.unit }}</td>
+                                        <td>{{ item.price }}</td>
+                                        <td>{{ item.total }}</td>
+                                        <td>
+                                            <form method="post" action="{% url 'remove-item' supplier_id item.item_id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" id="remove-btn">הסר</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endfor %}
+                <section id="summary">
+                <div class="total-order-price">
+                    <strong>סה"כ סכום הזמנה:</strong> {{ total_order_price }} <strong> ש"ח </strong>
+                </div>
+                <div class="button-group">
+                <form method="post" action="{% url 'submit-order' %}">
+                    {% csrf_token %}
+                    <button type="submit" id="submit-order-button">הגש הזמנה</button>
+                </form>
+                </form>
+                <form method="post" action="{% url 'reset-order' %}">
+                    {% csrf_token %}
+                    <button type="submit">אפס הזמנה</button>
+                </form>
+                </div>
+            {% else %}
+                <div class="empty-order">
+                    <p>אין פריטים בהזמנה הזמנית.</p>
+                </div>
+            {% endif %}
+            </section>
+        </div>
+        <header id="title">
+            <h2 class="page-title">מוצרים שזמינותם במלאי גבולית</h2>
+        </header>
+        <div class="search-container">
+            <form method="GET" action="{% url 'make-order-page' %}">
+                {{ form.query }}
+                <button type="submit">חפש מוצר</button>
+            </form>
+        </div>
+    </section>   
+    </section id="stock">
+        <table id="stock-table">
+            <thead>
+                <tr>
+                    <th>מק"ט</th>
+                    <th>שם פריט</th>
+                    <th>כמות נוכחית במלאי</th>
+                    <th>יחידה</th>
+                    <th>כמות מינימלית במלאי</th>
+                    <th> הפרש </th>
+                </tr>
+            </thead>
+            <tbody id="stock-today">
+                {% for item in raw_materials %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.Material_Name }}</td>
+                        <td>{{ item.Quantity }}</td>
+                        <td>{{ item.Unit }}</td>
+                        <td>{{item.Lower_Barrier}}
+                        <td>{{ item.percentage_diff }} % </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</section>
+    <section id="order-history">
+        <header id="title">
+            <h2 class="page-title">הזמנות קודמות</h2>
+        </header>
+        <table id="order-table">
+            <thead>
+                <tr>
+                    <th>צפה בהזמנה</th>
+                    <th>מספר הזמנה</th>
+                    <th>תאריך יצירה </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <td id = "eye"><a href="{{ order.get_absolute_url }}"><img src="{% static 'alexander/images/eye-icon.png' %}" alt="View Details"></a></td> 
+                    <td><a href="{{ order.get_absolute_url }}">{{ order.id }}</td>
+                    <td>{{ order.Date |date:"d/m/Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

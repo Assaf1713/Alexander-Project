@@ -1,0 +1,135 @@
+{% extends "page.html" %}
+{% load static %}
+{% load filters %}
+
+{% block title %}
+  Edit Employee Page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'alexander/Update_Employee.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="employee">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'Employees-Page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לרשימת העובדים</span>
+            </a>
+            <h2 class="page-title">עובד: {{ employee.First_Name }} {{ employee.Last_Name }}</h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    
+    <div class="employee-detail-container">
+        <div id="employee-detail-title">
+            <p><strong>תעודת זהות:</strong> {{ employee.Employee_ID }}</p>
+            <p><strong>שם פרטי:</strong> {{ employee.First_Name }}</p>
+            <p><strong>שם משפחה:</strong> {{ employee.Last_Name }}</p>
+            <p><strong>תפקיד:</strong> {{ employee.user.get_Type_display }}</p>
+            <p><strong>תאריך לידה:</strong> {{ employee.Birthday | date:"d/m/Y" }}</p>
+            <p><strong>תאריך הצטרפות:</strong> {{ employee.Join_Date |date:"d/m/Y" }}</p>
+            <p><strong>תאריך התחברות אחרון:</strong> {{ user_last_log_in.login_time |date:"d/m/Y" }}</p>
+            <h2>פרטי יצירת קשר</h2>
+            <p><strong> אימייל :</strong> {{ employee.Email }}</p>
+            <p><strong> טלפון :</strong> {{ employee.phone_number }}</p>
+        </div>
+    </div>
+    {% if is_active %}
+    <section id="permissions-section">
+        <div class="permissions">
+            <h2>הרשאות</h2>
+            <form method="post" action="{% url 'Update-Employee-Permissions-Page' employee.Employee_ID %}">
+                {% csrf_token %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>הרשאה</th>
+                            <th>צפייה</th>
+                            <th>עריכה</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category, perms in permissions_by_category.items %}
+                        <tr>
+                            <td>{{ category }}</td>
+                            <td>
+                                {% for perm in perms %}
+                                    {% if "view" in perm.Permission_Name.permission %}
+                                    {{ perm.Permission_Name.get_permission_display }}
+                                    {{ permission_forms|get_form_for_perm:perm }}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>
+                                {% for perm in perms %}
+                                    {% if "edit" in perm.Permission_Name.permission %}
+                                    {{ perm.Permission_Name.get_permission_display }}
+                                    {{ permission_forms|get_form_for_perm:perm }}
+                                    {% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="submit-btn">עדכן הרשאות</button>
+            </form>
+        </div>
+        </section>
+    
+    <section id="Edit-Employee">
+        <div class="form-container">
+            <h2 id="update-title">עדכן פרטי עובד</h2>
+            <form method="post" action="{% url 'Update-Employee-Page' employee.Employee_ID %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ employee_form.phone_number.label_tag }}
+                    {{ employee_form.phone_number }}
+                    {{ employee_form.phone_number.errors }}
+                </div>
+                <div class="form-group">
+                    {{ employee_form.Email.label_tag }}
+                    {{ employee_form.Email }}
+                    {{ employee_form.Email.errors }}
+                </div>
+                <button type="submit" class="submit-btn">עדכן</button>
+            </form>
+        </div>
+        <div class="form-container">
+            <h2 id="update-title">עדכן פרטי משתמש</h2>
+            <form method="post" action="{% url 'Update-Employee-Page' employee.Employee_ID %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ user_form.Username.label_tag }}
+                    {{ user_form.Username }}
+                    {{ user_form.Username.errors }}
+                </div>
+                <div class="form-group">
+                    {{ user_form.Password.label_tag }}
+                    {{ user_form.Password }}
+                    {{ user_form.Password.errors }}
+                </div>
+                <button type="submit" class="submit-btn">עדכן</button>
+            </form>
+        </div>
+    </section>
+    {% else %}
+    <p id="disable-message">לא ניתן לערוך פרטי עובד זה מכיוון שהוא לא פעיל</p>
+    {% endif %}
+    <div id="disable">
+        {% if is_active %}
+            <a href="{% url 'Disable-User' employee.Employee_ID %}" class="btn disable">
+                <span>השבת משתמש</span>
+            </a>
+        {% else %}
+            <a href="{% url 'Disable-User' employee.Employee_ID %}" class="btn activate">
+                <span>הפעל משתמש</span>
+            </a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

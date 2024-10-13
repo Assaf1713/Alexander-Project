@@ -1,0 +1,53 @@
+{% extends "page.html" %}
+{%load static %}
+
+{% block title %}
+stock page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/stock.css" %}" />
+{% endblock %}
+{%block content %}
+<section id="stock-page">
+  <header id="title">
+      <h2 class="page-title"> מלאי במחסן</h2>
+  </header>
+  <div class="search-container">
+    <form method="GET" action="{% url 'stock-page' %}">
+        {{ form.query }}
+        <button type="submit">חפש מוצר</button>
+    </form>
+  </div>
+  {% comment %} <div class="filter-container">
+      <input type="checkbox" id="pickup-today-checkbox" />
+      <label for="pickup-today-checkbox">Show today orders</label>
+  </div> {% endcomment %}
+  <table id="stock-table">
+      <thead>
+          <tr>
+              <th>ערוך כמות</th>
+              <th>מק"ט </th>
+              <th>שם פריט</th>
+              <th>כמות נוכחית במלאי</th>
+              <th>יחידה </th>
+          </tr>
+      </thead>
+      <tbody id="stock-today">
+          {% for item in warehouse %}
+              <td id = "eye"><a href="{{ item.get_absolute_url }}"><img src="{% static 'alexander/images/eye-icon.png' %}" alt="View Details"></a></td> 
+              <td><a href="{{ item.get_absolute_url }}">{{ item.id }}</td>
+              <td>{{ item.Material_Name }}</td>
+              <td>
+                <form method="post" action="{% url 'update_quantity' item.id %}">
+                  {% csrf_token %}
+                  <input type="number" name="Quantity" value="{{ item.Quantity }}" min="0">
+                  <button type="submit">עדכן</button>
+              </form>
+              </td>
+              <td>{{ item.Unit }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</section>
+{% endblock %}

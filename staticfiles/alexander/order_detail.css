@@ -1,0 +1,358 @@
+/* Style for the whole page */
+#order_detail-page {
+    padding: 20px;
+    direction: rtl;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 350;
+}
+
+.order-info {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.order-info span {
+    font-weight: bold;
+}
+
+.title_header {
+    background-color: orange;
+    text-align: center;
+    color: #333;
+    padding: 8px;
+    width: 100%;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500 !important;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    direction: rtl;
+    background-color: orange; 
+    padding: 10px 20px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+#back-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 12px;
+    border-radius: 4px; 
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+
+#back-btn img {
+    width: 20px;
+    height: auto;
+    margin-right: 8px;
+}
+
+.page-title {
+    font-size: 24px;
+    color: #333;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 auto; 
+}
+
+.btn:hover {
+    background-color: #0056b3; 
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+h1 {
+    font-size: 30px;
+    font-weight: 500;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.status-open {
+    color: green;
+    font-weight: bold;
+}
+
+.status-close {
+    color: red;
+    font-weight: bold;
+}
+
+/* General form container styling */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333;
+    border: 3px solid orange;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+.form-container h2 {
+    margin: auto;
+    margin-bottom: 1rem;
+    color: white;
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+
+
+/* Form group styling */
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    margin-left: 8px;
+    font-weight: bold;
+    color: #333;
+    min-width: 150px;
+    text-align: left;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 400;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Product Form buttons */
+.btn {
+
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+.btn:hover {
+    background-color: rgb(255, 189, 65);
+}
+
+/* Style for the close form */
+.btn-close-order {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Close order button styling */
+#close-order-button {
+    display: flex;
+    justify-content: right;
+    margin-top: 20px auto;
+}
+
+#back-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px auto;
+
+}
+
+/* Error messages */
+.errorlist {
+    color: #d9534f;
+    margin-bottom: 15px;
+}
+
+.errorlist li {
+    margin: 0;
+}
+
+.form-group .field-error {
+    border-color: #d9534f;
+}
+
+/* Table Styles */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    direction: rtl;
+}
+
+.product-table th,
+.product-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.product-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+.product-table td {
+    text-align: center;
+}
+
+.title_header {
+    display: flex;
+    margin-bottom: 20px;
+    direction: rtl;
+    justify-content: center;
+}
+
+.title_header h1,
+.title_header h2 {
+    margin: 0;
+    text-align: center;
+
+}
+
+.title_header .back-btn {
+    margin: auto;
+    margin-right: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+
+}
+
+#products-section {
+    margin-top: 20px;
+}
+
+#product-submit-btn {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-remove-product {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+.form-popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.form-popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.form-popup-content h2 {
+    margin: auto;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#open-form-btn {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 20px ;
+}   
+
+#buttons-container{
+    display: flex;
+    margin-top: 20px;
+    margin: auto;
+    align-items: center;
+}

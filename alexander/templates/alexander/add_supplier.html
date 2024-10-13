@@ -1,0 +1,49 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+ Add Supplier Page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'alexander/Add_Supplier.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="highlights">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'control-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לעמוד הבקרה</span>
+            </a>
+            <h2 class="page-title">הקם ספק חדש במערכת</h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    <section id="create-supplier-page">
+        <div class="form-container">
+            <form method="post" action="{% url 'Add-Supplier-Page' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.Name.label_tag }}
+                    {{ form.Name }}
+                    {{ form.Name.errors }}
+                </div>
+                <div class="form-group">
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                    {{ form.phone.errors }}
+                </div>
+                <div class="form-group">
+                    {{ form.Email.label_tag }}
+                    {{ form.Email }}
+                    {{ form.Email.errors }}
+                </div>
+                <button type="submit" class="btn">הוסף ספק</button>
+            </form>
+        </div>
+    </section>
+</section>
+{% endblock %}

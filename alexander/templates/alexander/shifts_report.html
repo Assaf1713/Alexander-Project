@@ -1,0 +1,95 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+   shifts report page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/shift_report.css" %}" />
+{% endblock %}
+{% block content %}
+    <section id="single-report-page-short-version">
+        <header id="title">
+            <h2 class="page-title">דוח משמרות אלכסנדר לתאריך : {{ current_date | date:"d/m/Y" }}</h2>
+        </header>
+        <div id="details">
+            <div class="summary">
+                <h3>סיכום הדוח</h3>
+                <p><span> טווח תאריכים לדו"ח זה</span>: {{ start_date | date:"d/m/Y" }} - {{ end_date | date:"d/m/Y" }}</p>
+                <p><span>מספר משמרות כולל:</span> {{ total_shifts_count }}</p>
+                <p><span>מספר משמרות שישי:</span> {{ all_friday_shifts_count }}</p>
+                <p><span>מספר עובדים:</span> {{ user_in_shifts_dict|length }}</p>
+            </div>
+            <div class="employee-stats">
+                <h3>סטטיסטיקות עובדים</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>עובד</th>
+                            <th>מספר משמרות</th>
+                            <th>משמרות ביום שישי</th>
+                            <th>אחוז משמרות</th>
+                            <th>אחוז משמרות ביום שישי</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user, shifts_count, friday_shifts_count, shift_percentage, friday_percentage in user_in_shifts_dict %}
+                            <tr>
+                                <td>{{ user.Employee.First_Name }} {{ user.Employee.Last_Name }}</td>
+                                <td>{{ shifts_count }}</td>
+                                <td>{{ friday_shifts_count }}</td>
+                                <td>{{ shift_percentage|floatformat:2 }}%</td>
+                                <td>{{ friday_percentage|floatformat:2 }}%</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="chart-container">
+                
+                <canvas id="shiftChart" width="10" height="10"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        var ctx = document.getElementById('shiftChart').getContext('2d');
+        var chartLabels = JSON.parse('{{ chart_labels|escapejs }}');
+        var chartData = JSON.parse('{{ chart_data|escapejs }}');
+
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    data: chartData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

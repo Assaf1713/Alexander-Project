@@ -1,0 +1,131 @@
+/* header section */
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: orange;
+    position: relative; 
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+#back-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#back-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+
+/* Form section */
+
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 2px solid orange;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    direction: rtl;
+}
+
+.form-group label {
+    margin-left: 8px;
+    color: #333;
+    min-width: 150px;
+    text-align: left;
+    font-size: 16px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+
+
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+/* Form buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+
+/* Error messages */
+.errorlist {
+    color: #d9534f;
+    margin-bottom: 15px;
+}
+
+.errorlist li {
+    margin: 0;
+}
+
+/* Field specific error */
+.form-group .field-error {
+    border-color: #d9534f;
+}
+
+

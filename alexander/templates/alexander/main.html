@@ -1,0 +1,75 @@
+{% extends "page.html" %}
+{%load static %}
+
+{% block title %}
+main page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/main.css" %}" />
+{% endblock %}
+{%block content %}
+ <section id="main">
+  <header id="title">
+    {% comment %} <h2 class="page-title">  עמוד הבית  </h2> {% endcomment %}
+    <img src="{% static 'alexander/images/logo.png' %}" alt="Alexander" class="centered-image">
+
+  </header>
+  <div class="all-highlights-container">
+    <div class="highlights-header">
+        <h3> הודעות מנהל </h3>
+    </div>
+    <table id="highlights-table">
+        <thead>
+            <tr>
+                <th> הודעה מאת </th>
+                <th> עבור תאריך </th>
+                <th> תוכן ההודעה </th>
+            </tr>
+        </thead>
+        <tbody id="highlights-today">
+            {% for highlight in highlights %}
+            <tr class="highlight-row">
+                <td>{{ highlight.Submitted_By.Employee.First_Name }} {{ highlight.Submitted_By.Employee.Last_Name }}</td>
+                <td>{{ highlight.Due_Date | date:"d/m/Y" }}</td>
+                <td>{{ highlight.Text }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="all-cakes-container">
+  <div class="cakes-header">
+      <h3>  הזמנות של עוגות להיום </h3>
+  </div>
+  <table id="cakes-table">
+      <thead>
+          <tr>
+              <th> מוצר  </th>
+              <th>  כמות </th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for product_name, quantity in CakesInOrderDict.items %}
+        <tr class="cake-row">
+            <td>{{ product_name }}</td>
+            <td>{{ quantity }}</td>
+        </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </section>   
+{% endblock %}

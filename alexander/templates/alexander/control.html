@@ -1,0 +1,85 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+    Control Page
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'alexander/control.css' %}" />
+{% endblock %}
+{% block content %}
+    <section id="control">
+        <header id="title">
+            <h2 class="page-title">בקרה</h2>
+        </header>
+        <section id="control-buttons">
+            <div id="suppliers">
+                <h2>ספקים</h2>
+                <div id="add-supplier-button">
+                    <a href="{% url 'Add-Supplier-Page' %}" class="btn">
+                        <img src="{% static 'alexander/images/plus.png' %}" alt="View Details">
+                        <span>הוסף ספק</span>
+                    </a>
+                </div>
+                <div id="update-supplier-button">
+                    <a href="{% url 'Suppliers-Page' %}" class="btn">
+                        <img src="{% static 'alexander/images/edit.png' %}" alt="View Details">
+                        <span>עדכן פרטי ספק</span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="employees">
+                <h2>עובדים</h2>
+                <div id="add-employee-button">
+                    <a href="{% url 'Add-Employee-Page' %}" class="btn">
+                        <img src="{% static 'alexander/images/plus.png' %}" alt="View Details">
+                        <span>הוסף עובד</span>
+                    </a>
+                </div>
+                <div id="update-employee-button">
+                    <a href="{% url 'Employees-Page' %}" class="btn">
+                        <img src="{% static 'alexander/images/edit.png' %}" alt="View Details">
+                        <span>עדכן פרטי עובד</span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="raw-materials">
+                <h2>חומרי גלם</h2>
+                <div id="add-raw-material-button">
+                    <a href="{% url 'Add-Raw-Material-Page' %}" class="btn">
+                        <img src="{% static 'alexander/images/plus.png' %}" alt="View Details">
+                        <span>הוסף חומר גלם</span>
+                    </a>
+                </div>
+            </div>
+            <div id="highlights">
+              <h2> הודעות מנהל </h2>
+              <div id="add-highlight-button">
+                  <a href="{% url 'add-highlight-page' %}" class="btn">
+                      <img src="{% static 'alexander/images/plus.png' %}" alt="View Details">
+                      <span>  הודעת מנהל חדשה </span>
+                  </a>
+              </div>
+              <div id="edit-highlight-button">
+                <a href="{% url 'highlights-page' %}" class="btn">
+                    <img src="{% static 'alexander/images/eye-icon.png' %}" alt="View Details">
+                    <span> צפה בהודעות מנהל  </span>
+                </a>
+            </div>
+          </div>
+        </section>
+        <section id="employees">
+
+
+
+
+
+
+
+
+
+        </section>  
+    </section>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+  Edit Suppliers Page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/Update_Supplier.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="suppliers">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'Suppliers-Page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לרשימת הספקים </span>
+            </a>
+            <h2 class="page-title"> ספק מספר {{supplier.id}}  </h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    
+    <div class="supplier-detail-container">
+        <div id="supplier-detail-title">
+            <p> <strong> שם ספק : </strong> {{ supplier.Name }} </p>
+            <p> <strong> טלפון : </strong> {{ supplier.phone }} </p>
+            <p> <strong> אימייל : </strong> {{ supplier.Email }} </p>
+            <p> <strong> הזמנה אחרונה : </strong> {{ last_order.Date | date:"d/m/Y" }} </p>
+        </div>
+        <div id="supplier-order-table">
+        <h2>  הזמנות של חומרי גלם מספק זה </h2>
+        {% if supplier.Supplier_Orders.all %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>מספר הזמנה</th>
+                        <th>תאריך הזמנה</th>
+                        <th>צפה בהזמנה </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in supplier.Supplier_Orders.all %}
+                    <tr>
+                        <td id= "detail">{{ order.id }}</td>
+                        <td>{{ order.Date | date:"d/m/Y" }}</td>
+                        <td id = "eye"><a href="{% url 'Raw-Materials-Order-Page' order.id %}"><img src="{% static 'alexander/images/eye-icon.png' %}" alt="View Details"></a></td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p id="no-order"> אין עדיין הזמנות מאת הספק זה </p>
+        {% endif %}
+
+    </div>
+    </div>
+    <section id="create-supplier-page">
+        
+        <div class="form-container">
+            <h2 id = "update-title">עדכן פרטי ספק</h2>
+            <form method="post" action="{% url 'edit-supplier-page' supplier.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                    {{ form.phone.errors }}
+                </div>
+                <div class="form-group">
+                    {{ form.Email.label_tag }}
+                    {{ form.Email }}
+                    {{ form.Email.errors }}
+                </div>
+                <button type="submit" class="submit-btn"> עדכן  </button>
+            </form>
+        </div>
+    </section>
+</section>
+{% endblock %}

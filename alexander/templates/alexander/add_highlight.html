@@ -1,0 +1,52 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+ add highlights page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/add_highlight.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="highlights">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'control-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לעמוד הבקרה</span>
+            </a>
+            <h2 class="page-title"> הוסף הודעת מנהל חדשה </h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    
+
+<section id="create-highlight-page">
+
+    <div class="form-container">
+        <form method="post" action="{% url 'add-highlight-page' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.Type.label_tag }}
+                {{ form.Type }}
+                {{ form.Type.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Due_Date.label_tag }}
+                {{ form.Due_Date }}
+                {{ form.Due_Date.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Text.label_tag }}
+                {{ form.Text }}
+                {{ form.Text.errors }}
+            </div>
+            <button type="submit" class="btn"> צור הודעה </button>
+        </form>
+    </div>
+</section>
+</section>
+{% endblock %}

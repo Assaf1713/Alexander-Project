@@ -1,0 +1,50 @@
+{% extends "page.html" %}
+{%load static %}
+
+{% block title %}
+   products in orders report page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/report_detail.css" %}" />
+{% endblock %}
+{%block content %}
+    <section id="single-report-page-short-version">
+        <header id="title">
+            <h2 class="page-title">  דוח מוצרים מוזמנים עבור התאריכים {{start_date|date:"d/m/Y"}} - {{end_date |date:"d/m/Y"}}</h2>
+        </header>
+        <div id="details">
+            <table id="categories-quantities-table">
+                <thead>
+                    <tr>
+                        <th> קטגוריה</th>
+                        <th>סה"כ מוצרים מוזמנים</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category_Name, quantity in product_category_dict.items %}
+                    <tr>
+                        {% comment %} hebrew category name {% endcomment %}
+                        <td> {% if category_Name == 'cake' %} עוגות {% elif category_Name == 'bread' %} לחמים {% elif category_Name == 'coockies' %} עוגיות {% elif category_Name == 'other' %} אחר {% endif %} </td>
+                        <td>{{ quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            <table id="products-quantities-table">
+                <thead>
+                    <tr>
+                        <th>שם מוצר</th>
+                        <th>כמות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product_Name, quantity in products_quantity_dict.items %}
+                    <tr>
+                        <td>{{ product_Name }}</td>
+                        <td>{{ quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

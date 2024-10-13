@@ -1,0 +1,101 @@
+{% extends "page.html" %}
+{% load static %}
+{% load filters %}
+
+{% block title %}
+  My User Page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'alexander/myuser.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="MyUser">
+    <header id="title">
+        <div class="header-container">
+            <h2 class="page-title">עובד: {{ user.Employee.First_Name }} {{ user.Employee.Last_Name }}  </h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    <div id="log-out">
+        <a href="{% url 'logout' %}" id="log-out-btn">התנתק</a>
+     </div>
+    <div class="employee-detail-container">
+        <div id="employee-detail-title">
+            <p><strong>תעודת זהות:</strong> {{ user.Employee.Old_Password }}</p>
+            <p><strong>שם פרטי:</strong> {{ user.Employee.First_Name }}</p>
+            <p><strong>שם משפחה:</strong> {{ user.Employee.Last_Name }}</p>
+            <p><strong>תפקיד:</strong> {{ user.get_Type_display }}</p>
+            <p><strong>תאריך התחלה:</strong> {{ user.Employee.Join_Date | date:"d/m/Y" }}</p>
+            <p><strong> התחברות אחרונה:</strong> {{ Last_Log_in_Date_Format }}</p>
+
+
+            <h2>פרטי יצירת קשר</h2>
+            <p><strong> אימייל :</strong> {{ user.Employee.Email }}</p>
+            <p><strong> טלפון :</strong> {{ user.Employee.phone_number }}</p>
+        </div>
+    </div>
+    <section id="permissions-section">
+        <div class="permissions">
+            <h2>  ההרשאות שלי  </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>הרשאה</th>
+                            <th>צפייה</th>
+                            <th>עריכה</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {% for category, perms in permissions_by_category.items %}
+                      <tr>
+                          <td>{{ category }}</td>
+                          <td>
+                              {% for perm in perms %}
+                                  {% if "view" in perm.Permission_Name.permission %}
+                                   <img src="{% static 'alexander/images/greenv.png' %}" class="permission-v-icon" alt="V">
+                                  {% endif %}
+                              {% endfor %}
+                          </td>
+                          <td>
+                              {% for perm in perms %}
+                                  {% if "edit" in perm.Permission_Name.permission %}
+                                  <img src="{% static 'alexander/images/greenv.png' %}" class="permission-v-icon" alt="V">
+                                  {% endif %}
+                              {% endfor %}
+                          </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>
+        </div>
+        </section>
+    
+    <section id="Edit-Employee">
+        <div class="form-container">
+            <h2 id="update-title">החלף ססמה </h2>
+            <form method="POST" action="{% url 'my-user-page' %}" id="update-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.Old_Password.label_tag }}
+                    {{ form.Old_Password }}
+                    {{ form.Old_Password.errors }}
+                </div>
+                <div class="form-group">
+                    {{ form.New_Password.label_tag }}
+                    {{ form.New_Password }}
+                    {{ form.New_Password.errors }}
+                </div>
+                <div class="form-group">
+                    {{ form.Confirm_Password.label_tag }}
+                    {{ form.Confirm_Password }}
+                    {{ form.Confirm_Password.errors }}
+                </div>
+                <button type="submit" class="submit-btn" id="update-btn">עדכן</button>
+            </form>
+        </div>
+    </section>
+</section>
+{% endblock %}

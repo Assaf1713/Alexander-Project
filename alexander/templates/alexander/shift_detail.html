@@ -1,0 +1,82 @@
+{% extends "page.html" %}
+{% load static %}
+{% load filters %}
+
+{% block title %}
+  Shift Detail
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'alexander/shift_detail.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="shift">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'schedual-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="Back">
+                <span>חזור לעמוד המשמרות</span>
+            </a>
+            <h2 class="page-title">משמרת מספר: {{ shift.id }}</h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    <div class="shift-detail-container">
+        <div id="shift-detail-title">
+            <h3>פרטי משמרת</h3>
+            <p class="shift-info">תאריך משמרת: <span>{{ shift.Date|date:"d/m/Y" }}</span></p>
+            <p class="shift-info">סוג המשמרת: <span>{{ shift.Shift_Type.get_Shift_Name_display }}</span></p>
+        </div>
+        <div id="employees">
+            <h3>עובדים במשמרת</h3>
+            {% if users_in_shift %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>שם פרטי</th>
+                        <th>שם משפחה</th>
+                        <th>פרטי עובד</th>
+                        <th>הסר עובד ממשמרת</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in users_in_shift %}
+                    <tr>
+                        <td>{{ employee.User.Employee.First_Name }}</td>
+                        <td>{{ employee.User.Employee.Last_Name }}</td>
+                        <td>
+                            <a href="{{ employee.User.Employee.get_absolute_url }}" class="btn">צפה</a>
+                        </td>
+                        <td>
+                            {% if Is_Not_Passed_Yet  %}
+                            <a href="{% url 'remove-employee-from-shift' shift.id employee.User.id %}" class="remove-btn">הסר</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>אין עובדים במשמרת זו</p>
+            {% endif %}
+            {% if not Is_Not_Passed_Yet  %}
+            <p id="no-edit-text">  לא ניתן לערוך משמרת זו מאחר והתאריך שלה חלף   </p>
+            {% endif %}
+        </div>
+    </div>
+    <section id="add-employee">
+        {% if Is_Not_Passed_Yet  %}
+        <div class="form-container">
+            <h3>הוסף עובד למשמרת</h3>
+            <form method="post" action="{% url 'add-employee-to-shift' shift.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">הוסף</button>
+            </form>
+        </div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}

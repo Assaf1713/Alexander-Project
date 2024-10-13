@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{%load static %}
+{% block title %}
+Log in page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/index.css" %}" />
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+{%block content %}
+<section id="welcome">
+  <div class="center-container">
+    <header class="header">
+        <img src="{% static 'alexander/images/logo.png' %}" alt="Alexander" class="centered-image">
+    </header>
+        <div id='login-form'>
+        <h2>התחבר למערכת באמצעות שם  משתמש וססמה </h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.Username.label_tag }}
+                {{ form.Username }}
+                {{ form.Username.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.Password.label_tag }}
+                {{ form.Password }}
+                {{ form.Password.errors }}
+            </div>
+            <button type="submit" class='btn'> התחבר </button>
+        </form>
+    </div>
+    
+    <div class="spacer"></div>
+
+</div>
+</section>   
+{% endblock %}

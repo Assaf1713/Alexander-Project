@@ -1,0 +1,106 @@
+
+#control{
+    padding: 20px;
+    direction: rtl;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 350;
+}
+
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: orange;
+    margin-bottom: 20px;
+
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+    
+}
+
+
+#control {
+    padding: 20px;
+}
+
+#control-buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#control-buttons > div {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#control-buttons > div h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+    
+
+}
+
+/* Button Groups */
+#control-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-decoration: none;
+    color: #fff;
+    background-color: orange;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    font-size: 20px;
+
+}
+
+#control-buttons .btn:hover {
+    background-color: #ff7f50;
+}
+
+/* Button Images */
+#control-buttons .btn img {
+    width: 30px;
+    height: 30px;
+    filter: sepia(100%) saturate(1000%) hue-rotate(-50deg);
+    margin-left: 10px;
+}
+
+/* Button Text */
+#control-buttons .btn span {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    #control-buttons > div {
+        width: 100%;
+    }
+}

@@ -1,0 +1,136 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+    Order Details
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'alexander/order_detail.css' %}" />
+{% endblock %}
+{% block content %}
+    <section id="order_detail-page">
+        <div class="header-container">
+            <a href="{% url 'order-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="Back">
+                <span>חזור לעמוד ההזמנות</span>
+            </a>
+            <h2 class="page-title">פרטי הזמנה מספר: {{ order.id }}</h2>
+        </div>        
+        <p class="order-info {% if order.Status == 'open' %}status-open{% else %}status-close{% endif %}">סטטוס: <span>{{ order.Status }}</span></p>
+        <p class="order-info">מספר הזמנה: <span>{{ order.id }}</span></p>
+        <p class="order-info">סוג הזמנה: <span>{% if order.Order_Type == 'online_order' %} הזמנה אונליין {% else %} הזמנה מהדלפק {% endif %} </span></p>
+
+        <p class="order-info">שם הלקוח: <span>{{ order.Customer_Name }}</span></p>
+        <p class="order-info">שם משפחה: <span>{{ order.Customer_Last_Name }}</span></p>
+        <p class="order-info">תאריך יצירת הזמנה: <span>{{ order.Order_Date|date:"d/m/Y" }}</span></p>
+        <p class="order-info">תאריך איסוף: <span>{{ order.PickUp_Date|date:"d/m/Y" }}</span></p>
+        <p class="order-info">האם ההזמנה שולמה: <span>{% if order.IsPaid %}כן{% else %}לא{% endif %}</span></p>
+        <p class="order-info">הערות להזמנה: <span>{{ order.Comments }}</span></p>
+        <p class="order-info">ההזמנה נוצרה על ידי: <span>{{ order.Created_By.Employee.First_Name }} {{ order.Created_By.Employee.Last_Name }}</span></p>
+        <p class="order-info">ההזמנה נערכה לאחרונה על ידי: <span>{{ order.Last_Modified_By.Employee.First_Name }} {{ order.Last_Modified_By.Employee.Last_Name }}</span></p>
+        
+        {% if order.Status == 'open' %}
+        <div id="close-order-button">
+            <form method="post" action="{% url 'close_order' order.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn-close-order">סמן הזמנה כהושלמה</button>
+            </form>
+        </div>
+        {% endif %}
+        {% if order.Status == 'close' %}
+        <div id="back-button">
+                 <a href="{% url 'all-orders-page' %}" class="btn"> חזור לרשימת ההזמנות   </a>
+        </div>
+        {% endif %}
+
+        <div class="title_header" id="products-section">
+            <h1>מוצרים בהזמנה מספר {{order.id }} | סכום כולל: {{ order_total }} ש"ח </h1>
+        </div>
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>מוצר</th>
+                    <th>כמות להזמנה</th>
+                    <th>הערות למוצר</th>
+                    <th>הסר מוצר</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if products %}
+                {% for product_in_order in products %}
+                    <tr>
+                        <td>{{ product_in_order.product.Product_Name }}</td>
+                        <td>{{ product_in_order.quantity }}</td>
+                        <td>{{ product_in_order.comments }}</td>
+                        <td>
+                            <form method="post" action="{% url 'remove-product' order.id product_in_order.product.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-remove-product">הסר מוצר</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="4">אין מוצרים בהזמנה</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <div id="total-amount">
+        </div>
+
+        {% if order.Status == 'open' %}
+        <div id='buttons-container'>
+        <button class="btn" id="open-form-btn">הוסף מוצר להזמנה</button>
+        </div>
+        <div id="form-popup" class="form-popup">
+            <div class="form-popup-content">
+                <span class="close" id="close-form-btn">&times;</span>
+                <h2>הוספת מוצר להזמנה</h2>
+                <form method="post" action="{% url 'order-detail' order.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.product.label_tag }}
+                        {{ form.product }}
+                        {{ form.product.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.quantity.label_tag }}
+                        {{ form.quantity }}
+                        {{ form.quantity.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.comments.label_tag }}
+                        {{ form.comments }}
+                        {{ form.comments.errors }}
+                    </div>
+                    <div id="product-submit-btn">
+                        <button type="submit" class="btn">הוסף מוצר</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+
+    <script>
+        var formPopup = document.getElementById("form-popup");
+        var openFormBtn = document.getElementById("open-form-btn");
+        var closeFormBtn = document.getElementById("close-form-btn");
+
+        openFormBtn.onclick = function() {
+            formPopup.style.display = "block";
+        }
+
+        closeFormBtn.onclick = function() {
+            formPopup.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == formPopup) {
+                formPopup.style.display = "none";
+            }
+        }
+    </script>
+{% endblock %}

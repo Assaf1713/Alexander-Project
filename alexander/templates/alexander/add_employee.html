@@ -1,0 +1,81 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+ Add Employee Page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'alexander/Add_Employee.css' %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="highlights">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'control-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לעמוד הבקרה</span>
+            </a>
+            <h2 class="page-title">הקם עובד חדש במערכת</h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    <section id="create-employee-page">
+        <div class="form-container">
+            <form method="post" action="{% url 'Add-Employee-Page' %}">
+                {% csrf_token %}
+                <h3>פרטי עובד</h3>
+                <div class="form-group">
+                    {{ employee_form.Employee_ID.label_tag }}
+                    {{ employee_form.Employee_ID }}
+                    {{ employee_form.Employee_ID.errors }}
+                </div>
+                <div class="form-group">
+                    {{ employee_form.First_Name.label_tag }}
+                    {{ employee_form.First_Name }}
+                    {{ employee_form.First_Name.errors }}
+                </div>
+                <div class="form-group">
+                    {{ employee_form.Last_Name.label_tag }}
+                    {{ employee_form.Last_Name }}
+                    {{ employee_form.Last_Name.errors }}
+                </div>
+                <div class="form-group">
+                    {{ employee_form.Birthday.label_tag }}
+                    {{ employee_form.Birthday }}
+                    {{ employee_form.Birthday.errors }}
+                </div>
+                <div class="form-group">
+                    {{ employee_form.Email.label_tag }}
+                    {{ employee_form.Email }}
+                    {{ employee_form.Email.errors }}
+                </div>
+                <div class="form-group">
+                    {{ employee_form.phone_number.label_tag }}
+                    {{ employee_form.phone_number }}
+                    {{ employee_form.phone_number.errors }}
+                </div>
+                <h3>פרטי משתמש</h3>
+                <div class="form-group">
+                    {{ user_form.Type.label_tag }}
+                    {{ user_form.Type }}
+                    {{ user_form.Type.errors }}
+                </div>
+                <div class="form-group">
+                    {{ user_form.Username.label_tag }}
+                    {{ user_form.Username }}
+                    {{ user_form.Username.errors }}
+                </div>
+                <div class="form-group">
+                    {{ user_form.Password.label_tag }}
+                    {{ user_form.Password }}
+                    {{ user_form.Password.errors }}
+                </div>
+                <button type="submit" class="btn">הוסף עובד</button>
+            </form>
+        </div>
+    </section>
+</section>
+{% endblock %}

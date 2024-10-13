@@ -1,0 +1,40 @@
+{% extends "page.html" %}
+{%load static %}
+
+{% block title %}
+   stock report page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/report_detail.css" %}" />
+{% endblock %}
+{%block content %}
+    <section id="single-report-page-short-version">
+        <header id="title">
+            <h2 class="page-title">   דוח מלאי אלכסנדר לתאריך :  {{current_date |date:"d/m/Y"}}</h2> 
+            <h3 id='total-stock-value'> שווי מלאי כולל: {{Total_Stock_Value}} ש"ח </h3>
+        </header>
+        <div id="details">
+            <table id="stock-table">
+                <thead>
+                    <tr>
+                        <th>מק"ט </th>
+                        <th>שם פריט</th>
+                        <th>כמות נוכחית במלאי</th>
+                        <th> רף מינימום </th>
+                        <th>יחידה </th>
+                    </tr>
+                </thead>
+                <tbody id="stock-today">
+                    {% for item in stock %}
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.Material_Name }}</td>
+                        <td>{{ item.Quantity }}</td>
+                        <td>{{ item.Lower_Barrier }}</td>
+                        <td>{{ item.Unit }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

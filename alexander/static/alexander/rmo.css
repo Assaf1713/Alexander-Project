@@ -1,0 +1,181 @@
+
+
+#order_detail-page{
+    padding: 20px;
+    direction: rtl;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 350;
+}
+
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: orange;
+    margin-bottom: 20px;
+
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+    
+}
+
+.order-detail-container {
+    background-color: #f9f9f9;
+    border: 3px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    direction: rtl;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin: auto;
+}
+
+#order-detail-title h3,p{
+    font-size: 25px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+
+}
+#order-detail-title strong{
+    font-size: 25px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 600;
+    color: #333;
+
+}
+
+.order-table {
+    margin-bottom: 30px;
+}
+
+.supplier-order-section h2 {
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: 'fredoka', sans-serif;
+
+
+}
+
+.supplier-order-section p{
+    text-align: center;
+    margin: auto;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+
+
+/* table section */
+
+.order-table-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    direction: rtl;
+    margin-bottom: 20px;
+
+}
+
+
+
+.order-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+}
+
+.order-table th,
+.order-table td {
+    border: 2px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+
+}
+
+.order-table th {
+    background-color: #f4f4f4;
+    font-weight: 600;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.order-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.order-table form {
+    display: inline;
+}
+
+.order-table button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.order-table button:hover {
+    background-color: #45a049;
+}
+
+#summary{
+    background-color: orange;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+
+.total-order-price{
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.created-by{
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}

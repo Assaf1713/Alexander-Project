@@ -1,0 +1,93 @@
+{% extends "page.html" %}
+{% load static %}
+{% load filters %}
+
+{% block title %}
+ schedual builder tool page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/shift_builder.css" %}" />
+{% endblock %}
+{% block content %}
+<section id="schedual_page">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'schedual-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור</span>
+            </a>
+            <h2 class="page-title"> כלי בנית המשמרות   </h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+ <section class="schedual-section" id="admin-section">
+    <header class="section-title">
+      <p>  שבץ עובדים למשמרות השבוע הבא ולחץ על כפתור "צור משמרות" על מנת להעלות את הנתונים למערכת <br> ניתן להשתמש בכפתור הוסף עובדים/הסר על מנת לבצע את השיבוץ  </p>  
+    </header>
+    <div class="builder-container">
+        <table>
+        <thead>
+            <tr>
+                <th></th>
+                {% for day, date in next_week_dates.items %}
+                <th> {{ day }} <br> {{ date| date:"d/m/Y"  }} </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for time_of_day, shift_key in shifts_dict.items %}
+                <tr>
+                    <td>{{ time_of_day }}</td>
+                    {% for day in days_lst %}
+                        <td>
+                            {% for shift_day, shift_data in shift_key.items %}
+                                {% if shift_day == day %}
+                                    <div class="form-container">
+                                        <form method="post" action="{% url 'shift-builder-tool-page' %}">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                {% comment %} {{ shift_data.form.cashiers.label_tag }} <br>
+                                                {{ shift_data.form.cashiers }} <br>  {% endcomment %}
+                                                {{shift_data.form.as_p}}
+                                                <button type="submit">הוסף עובדים</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="employees-container">
+                                        <table class="employees-table">
+                                            {% if not shift_data.employees %}
+                                                <tr>
+                                                    <td id='no-employees'>אין עובדים ששובצו למשמרת זו</td>
+                                                </tr>
+                                            {% else %}
+                                            {% for employee in shift_data.employees %}
+                                                <tr>
+                                                    <td>{{ employee.First_Name }} {{ employee.Last_Name }}</td>
+                                                    <td><a href="{% url 'remove-employee-from-temp-shift' employee.id shift_data.shift.id %}" class="remove-link">הסר</a></td>
+                                                </tr>
+                                            {% endfor %}
+                                            {% endif %}
+                                        </table>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div class="actions">
+        {% if shifts_dict %}
+            <a href="{% url 'reset-builder' %}" class="reset-btn">אפס את כל השיבוצים</a>
+        {% else %}
+            <a href="{% url 'reset-builder' %}" class="unactive-btn">אפס את כל השיבוצים</a>
+        {% endif %}
+        <a href="{% url 'submit-shifts' %}" class="submit-btn">צור משמרות</a>
+    </div>
+ </section>
+
+
+</section>
+{% endblock %}

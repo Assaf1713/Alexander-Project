@@ -1,0 +1,200 @@
+/* Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+html {
+    font-family: 'fredoka', sans-serif;
+}
+
+body, input, button, textarea {
+    font-family: 'Fredoka', sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: white;
+}
+
+h1, h2, h3 {
+    font-family: 'lato', sans-serif;
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header Styles */
+header#main-navigation {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header#main-navigation h1 {
+    font-size: 1.5rem;
+}
+
+header#main-navigation h1 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+header#main-navigation nav {
+    flex-grow: 1;
+    text-align: right;
+}
+
+header#main-navigation .nav-list {
+    list-style: none;
+}
+
+header#main-navigation .nav-item {
+    font-family: 'fredoka', sans-serif;
+    display: inline-block;
+    margin-left: 1.5rem;
+    position: relative; /* Ensures dropdown is positioned correctly */
+}
+
+header#main-navigation .nav-item a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+header#main-navigation .nav-item a:hover {
+    color: #ddd;
+    text-decoration: underline;
+}
+
+/* Dropdown Menu Styles */
+header#main-navigation .nav-item .dropdown-menu {
+    display: none; 
+    position: absolute;
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    margin: auto;
+    top: 110%;
+    right: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 500;
+}
+
+header#main-navigation .nav-item#user-menu:hover .dropdown-menu {
+    display: block; 
+}
+
+header#main-navigation .dropdown-menu li {
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid #555;
+}
+
+header#main-navigation .dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+header#main-navigation .dropdown-menu li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+}
+
+header#main-navigation .dropdown-menu li a:hover {
+    background-color: #555;
+    color: #ddd;
+}
+
+
+@media (max-width: 768px) {
+    header#main-navigation {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header#main-navigation nav {
+        text-align: left;
+        margin-top: 1rem;
+    }
+
+    header#main-navigation .nav-item {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+
+/* Message Styles */
+ul.messages {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    width: 80%;
+}
+
+ul.messages li {
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Fredoka', sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Error Message Style */
+ul.messages li.error {
+    background-color: #f44336; 
+    color: #fff;
+    border-left: 5px solid #d32f2f;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Success Message Style */
+ul.messages li.success {
+    background-color: #4caf50; 
+    color: #fff;
+    border-left: 5px solid #388e3c;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Warning Message Style */
+ul.messages li.warning {
+    background-color: #ff9800; 
+    color: #fff;
+    border-left: 5px solid #f57c00;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Info Message Style */
+ul.messages li.info {
+    background-color: #2196f3; /* Blue for informational messages */
+    color: #fff;
+    border-left: 5px solid #1976d2;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

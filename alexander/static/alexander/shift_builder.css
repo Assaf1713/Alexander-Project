@@ -1,0 +1,311 @@
+body {
+    font-family: 'fredoka', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: orange;
+    position: relative; 
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+#back-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#back-btn img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.section-title h2{
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+    text-align: center; 
+}
+
+.section-title p{
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+    text-align: center; 
+}
+
+.builder-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    text-align: left;
+    transform: scale(0.9);
+
+    
+    
+}
+
+table thead tr {
+    background-color: #FFCC99; 
+    color: #333; 
+    font-weight: bold;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #FFDDC1; 
+    justify-content: center;
+    text-align: center;
+}
+
+.time-of-day {
+    text-align: center;
+    font-weight: 600;
+}
+
+table th:first-child, table td:first-child {
+    background-color: #FFCC99; 
+    color: #333; 
+}
+
+button {
+    display: flex;
+    padding: 5px 10px;
+    font-size: 15px;
+    color: #FFF;
+    background-color: orange; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: green; 
+}
+
+.form-container {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    direction: rtl;
+    background-color: #f9f9f9;
+    border: 3px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 300;
+    color: #333;
+    margin-left: auto;
+}
+
+.form-group label {
+    font-family: 'Fredoka', sans-serif;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    text-align: right;
+    order : 1;
+}
+
+/* Employees table styling */
+.employees-container {
+    margin-top: 20px;
+}
+
+.employees-container h3{
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+    text-align: center; 
+
+}
+
+.employees-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+.employees-table thead tr {
+    background-color: #FFD700;
+    color: #333;
+    font-weight: bold;
+}
+
+.employees-table th, .employees-table td {
+    padding: 10px 12px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#no-employees{
+    background-color: #f4f4f4;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+
+
+}
+
+.remove-link {
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #FFF;
+    background-color: red; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.remove-btn:hover {
+    background-color: darkred; 
+}
+
+
+select[multiple], select[size] {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #FFCC99;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+select[multiple] option, select[size] option {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+select[multiple]:focus, select[size]:focus {
+    outline: none;
+    border-color: orange;
+}
+
+select[multiple]::-webkit-scrollbar, select[size]::-webkit-scrollbar {
+    width: 10px;
+}
+
+select[multiple]::-webkit-scrollbar-track, select[size]::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+select[multiple]::-webkit-scrollbar-thumb, select[size]::-webkit-scrollbar-thumb {
+    background: #FFCC99;
+    border-radius: 10px;
+}
+
+select[multiple]::-webkit-scrollbar-thumb:hover, select[size]::-webkit-scrollbar-thumb:hover {
+    background: orange;
+}
+
+
+.actions{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.reset-btn {
+    display: flex;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #FFF;
+    background-color: red; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.unactive-btn{
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.submit-btn {
+    display: flex;
+    padding: 5px 10px;
+    font-size: 20px;
+    color: #FFF;
+    background-color: green; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+

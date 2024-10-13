@@ -1,0 +1,90 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+shift page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/all_shifts.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+<script src="{% static 'alexander/js/shiftspopup.js' %}" defer></script>
+<script src="{% static 'alexander/js/shift_filter.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section id="shifts-page">
+    <header class="title">
+        <h2 class="page-title"> כל המשמרות </h2>
+    </header>
+    <div class="filter-toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="filterToggle">
+            <span class="slider round"></span>
+        </label>
+        <p>הצג פילטרים</p>
+    </div>
+    
+    <div class="search-container" id="filterForm" style="display: none;">
+        <form method="POST" action="{% url 'all-shifts-page' %}">
+            <h3> פילטרים </h3>
+            {% csrf_token %}
+            <div class="form-group">
+                <p>חיפוש לפי תאריכים</p>
+                <div class="form-field">
+                    {{ form.start_date.label_tag }}
+                    {{ form.start_date }}
+                </div>
+                <div class="form-field">
+                    {{ form.end_date.label_tag }}
+                    {{ form.end_date }}
+                </div>
+            </div>
+            <div class="form-group">
+                <p>חיפוש לפי עובד</p>
+                <div class="form-field">
+                    {{ form.employee.label_tag }}
+                    {{ form.employee }}
+                </div>
+            </div>
+            <button type="submit" class="btn-submit">חפש משמרת</button>
+            <a href="{% url 'reset-all-shifts' %}" class="btn-reset">  אפס פילטרים  </a>
+        </form>
+    </div>
+    <div class="all-shift-container">
+        <table id="shift-table">
+            <thead>
+                <tr>
+                    <th> פרטי משמרת </th>
+                    <th>מספר משמרת</th>
+                    <th>תאריך משמרת </th>
+                    <th>  סוג משמרת </th>
+                </tr>
+            </thead>
+            <tbody id="shift-today">
+                {% for shift in shifts %}
+                <tr class="shift-row" data-shift-date="{{ shift.Date }}">
+                    <td id = "eye"><a href="{{ shift.get_absolute_url }}"><img src="{% static 'alexander/images/eye-icon.png' %}" alt="View Details"></a></td> 
+                    <td><a href="{{ shift.get_absolute_url }}">{{ shift.id }}</td>
+                    <td>{{ shift.Date | date:"d/m/Y" }}</td>
+                    <td>{{ shift.Shift_Type.get_Shift_Name_display }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+ 
+
+<script>
+    document.getElementById('filterToggle').addEventListener('change', function() {
+        var filterForm = document.getElementById('filterForm');
+        if (this.checked) {
+            filterForm.style.display = 'block';
+        } else {
+            filterForm.style.display = 'none';
+        }
+    });
+    </script>
+
+{% endblock %}

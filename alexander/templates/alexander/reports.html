@@ -1,0 +1,72 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+reports page
+{% endblock %}
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/reports.css" %}" />
+{% endblock %}
+{% block content %}
+<section id="reports-page">
+    <header id="title">
+        <h2 class="page-title"> יצירת דוחות </h2>
+    </header>
+    <div class="report-container">
+        <div id="stock-report" class="report">
+            <h2>דוח מלאי</h2>
+            <p> צור דוח מלאי עדכני - הדוח כולל רשימת מוצרים וכמויות בצירוף שווי מלאי כללי </p>
+            <a href="{% url 'stock-report-page' %}" class="btn">הצג דוח</a>
+        </div>
+    </div>
+    <div class="report-container">
+        <div id="orders-report" class="report">
+            <h2>דוח הזמנות</h2>
+            <p> צור דוח הכנסות מהזמנות קופה והזמנות אונליין. בחר דוח מצומצם עבור מידע מתומצת או דוח מורחב על מנת לצפות בנתוני הזמנות </p>
+            <form id="orders-form" action="{% url 'sales-report-page' %}" method="post">
+                {% csrf_token %}
+                {{ form2.as_p }}
+                <button type="submit">הצג דוח</button>
+            </form>
+        </div>
+    </div>
+    <div class="report-container">
+        <div id="shift-report" class="report">
+            <h2>דוח משמרות</h2>
+            <p>   צפה בנתוני משמרות של עובדי מחלקת המכירה עבור טווח תאריכים רצוי </p>
+            <form id="shifts-form" action="{% url 'shift-report-page' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form4.Start_Date.label_tag }}
+                    {{ form4.Start_Date }}
+                    {{form4.Start_Date.errors}}
+                </div>
+                <div class="form-group">
+                    {{ form4.End_Date.label_tag }}
+                    {{ form4.End_Date }}
+                    {{form4.End_Date.errors}}
+                </div>
+                <button type="submit">הצג דוח</button>
+            </form>
+        </div>
+    </div>
+    <div class="report-container">
+        <div id="products-report" class="report">
+            <h2>דוח מוצרים</h2>
+            <p> צור דוח מוצרים-כמויות </p>
+            <form id="products-form" action="{% url 'product-report-page' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form3.Start_Date.label_tag }}
+                    {{ form3.Start_Date }}
+                </div>
+                <div class="form-group">
+                    {{ form3.End_Date.label_tag }}
+                    {{ form3.End_Date }}
+                </div>
+                <button type="submit">הצג דוח</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

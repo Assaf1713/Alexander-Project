@@ -1,0 +1,281 @@
+body {
+    font-family: 'fredoka', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: orange;
+    width: 100%;
+
+}
+
+
+.page-title {
+    font-size: 35px;
+    font-family: 'fredoka', sans-serif;
+    font-weight: 500;
+    color: #f2f2f2;
+}
+
+
+.section-title h2{
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+    text-align: center; 
+}
+
+.section-title p{
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+    text-align: center; 
+}
+
+/* the employees section styling */
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+table thead tr {
+    background-color: #FFCC99; 
+    color: #333; 
+    font-weight: bold;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #FFDDC1; 
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.time-of-day{
+    text-align: center;
+    font-weight: 600;
+}
+
+table th:first-child, table td:first-child {
+    background-color: #FFCC99; 
+    color: #333; 
+ 
+}
+
+button {
+    display: flex;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #FFF;
+    background-color: orange; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin: auto;
+    
+}
+
+button:hover {
+    background-color: green; 
+}
+
+#reset{
+    display: flex;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #FFF;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin: auto;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.5); /* Larger checkboxes */
+    margin: 0 10px;
+    accent-color: orange ; /* Orange for checked state */
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    font-family: 'fredoka', sans-serif;
+    text-align: center;
+
+}
+
+.actions form, .actions button {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.add-employees{
+    display: flex;
+    padding: 5px 10px;
+    font-size: 18px;
+    color: orange;
+    justify-content: center;
+    width: 50%;
+    background-color: white;
+    border: 1px solid orange;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-decoration: none;
+}
+
+.tabs {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    
+    
+}
+
+.tab-button {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px 5px 0 0;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 20px;
+}
+
+.tab-button.active {
+    background-color: #333;
+    color: white;
+}
+
+.tab-button:not(.active) {
+    background-color: #ddd;
+    color: #333;
+}
+
+.tab-button:not(.active):hover {
+    background-color: #bbb;
+    color: #333;
+}
+
+.tab-content h3{
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    font-family: 'fredoka', sans-serif;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.tabs-titles {
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    font-family: 'fredoka', sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+
+
+}
+
+.tabs-titles h2{
+    font-size: 30px;
+    font-weight: 500;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+    text-align: center; 
+}
+.tabs-titles p{
+    font-size: 20px;
+    font-weight: 400;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'fredoka', sans-serif;
+    text-align: center; 
+}
+
+.highlight{
+    background-color: rgb(199, 254, 254);
+
+}
+
+.all-orders{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: 'fredoka', sans-serif;
+    padding: 20px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+    margin: auto;
+   
+    margin-bottom: 40px;
+}
+
+.all-orders .btn {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 20%;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: #FFF;
+    background-color: orange; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+}

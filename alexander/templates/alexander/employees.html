@@ -1,0 +1,51 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+  Employees Page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/Employees_Page.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="Employees">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'control-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לעמוד הבקרה</span>
+            </a>
+            <h2 class="page-title"> רשימת עובדים </h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    
+    <table id="employees-table">
+        <thead>
+            <tr>
+                <th> ערוך פרטי עובד  </th>
+                <th>  תעודת זהות  </th>
+                <th> שם  </th>
+                <th> שם משפחה </th>
+                <th> תפקיד  </th>
+                <th> סטטוס  </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in employees %}
+            <tr>
+                <td id = "eye"><a href="{{ item.get_absolute_url }}"><img src="{% static 'alexander/images/edit.png' %}" alt="View Details"></a></td>
+                <td> {{item.Employee_ID}} </td>
+                <td> {{item.First_Name}} </td>
+                <td> {{item.Last_Name}} </td>
+                <td> {{item.user.get_Type_display}} </td>
+                <td> {% if item.user.Is_Active %} פעיל  {% else %} לא פעיל {%endif%} </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

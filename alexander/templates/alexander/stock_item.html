@@ -1,0 +1,43 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+    Stock Item
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'alexander/stock_item.css' %}" />
+{% endblock %}
+{% block content %}
+    <section id="stock-item-page">
+        <div class="title_header">
+            <h1>פרטי מוצר במלאי</h1>
+        </div>
+    </div>
+    <div class="stock-item-container">
+        <p class="stock-item-info">מק"ט: <span>{{ item.id }}</span></p>
+        <p class="stock-item-info">שם מוצר: <span>{{ item.Material_Name }}</span></p>
+        <p class="stock-item-info">כמות במלאי: <span>{{ item.Quantity }}</span></p>
+        <p class="stock-item-info">יחידת מידה: <span>{{ item.Unit }}</span></p>
+        <p class="stock-item-info">מחיר: <span>{{ item.Price }}</span></p>
+        <p class="stock-item-info">ספק: <span>{{ item.Supplier }}</span></p>
+    </div>
+    {% if flag %}  
+    <div class="form-container">
+        <h1>עדכון פרטי מוצר</h1>  
+     <div id="update-supplier-form">
+        <form method="post" action="{% url 'item-detail' item.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">עדכן</button>
+        </form>
+     </div>
+     <div id="update-price-form">
+        <form method="post" action="{% url 'item-detail' item.id %}">
+            {% csrf_token %}
+            {{ form2.as_p }}
+            <button type="submit">עדכן</button>
+        </form>
+     </div>
+    </div>
+    {% endif %}
+{% endblock %}

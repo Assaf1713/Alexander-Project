@@ -1,0 +1,56 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+order page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/orders.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+<script src="{% static 'alexander/js/orderspopup.js' %}" defer></script>
+<script src="{% static 'alexander/js/order_filter.js' %}" defer></script>
+{% endblock %}
+
+{% block content %}
+<section id="orders-page">
+    <header class="title">
+        <h2 class="page-title"> כל ההזמנות </h2>
+    </header>
+    <div class="search-container">
+        <form method="GET" action="{% url 'all-orders-page' %}">
+            {{ form.query }}
+            <button type="submit">חפש הזמנה</button>
+        </form>
+      </div>
+    <div class="all-order-container">
+        <table id="order-table">
+            <thead>
+                <tr>
+                    <th>צפה בהזמנה</th>
+                    <th>מספר הזמנה</th>
+                    <th>שם לקוח</th>
+                    <th>תאריך יצירת הזמנה</th>
+                    <th>תאריך איסוף</th>
+                    <th>הערות</th>
+                    <th>סטטוס</th>
+                </tr>
+            </thead>
+            <tbody id="order-today">
+                {% for order in orders %}
+                <tr class="order-row {% if order.Status == 'open' and order.PickUp_Date < today %}expired{% endif %}" data-pickup-date="{{ order.PickUp_Date }}">
+                    <td id = "eye"><a href="{{ order.get_absolute_url }}"><img src="{% static 'alexander/images/eye-icon.png' %}" alt="View Details"></a></td> 
+                    <td><a href="{{ order.get_absolute_url }}">{{ order.id }}</td>
+                    <td>{{ order.Customer_Name }}</td>
+                    <td>{{ order.Order_Date | date:"d/m/Y" }}</td>
+                    <td>{{ order.PickUp_Date | date:"d/m/Y" }}</td>
+                    <td>{{ order.Comments }}</td>
+                    <td class="{% if order.Status == 'open' %}status-open{% else %}status-close{% endif %}">{{ order.Status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ 
+
+{% endblock %}

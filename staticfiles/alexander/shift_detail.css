@@ -1,0 +1,161 @@
+body {
+    font-family: 'Fredoka', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    direction: rtl;
+    background-color: orange; 
+    padding: 10px 20px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+#back-btn {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    background-color: orange;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 12px;
+    border-radius: 4px; /* Rounded corners */
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+
+#back-btn img {
+    width: 20px;
+    height: auto;
+    margin-right: 8px;
+}
+
+.page-title {
+    font-size: 24px;
+    color: #333;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    margin: 0 auto; /* Center the title */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darken the button color on hover */
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+
+.shift-detail-container {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    direction: rtl;
+}
+
+.shift-detail-container h3 {
+    font-size: 20px;
+    color: #333;
+    font-weight: 500;
+    font-family: 'Fredoka', sans-serif;
+}
+#shift-detail-title, #employees, #add-employee {
+    margin-bottom: 20px;
+}
+
+.shift-info {
+    font-size: 20px;
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+.btn {
+    padding: 8px 12px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    
+}
+
+.remove-btn {
+    padding: 8px 12px;
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.form-container {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    direction: rtl;
+}
+
+.form-container h3 {
+    font-size: 20px;
+    color: #333;
+    font-weight: 500;
+    font-family: 'Fredoka', sans-serif;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 25%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 10%;
+    font-size: 15px;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+#no-edit-text{
+    font-size: 20px;
+    color: red;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid red;
+
+   
+}

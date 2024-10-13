@@ -1,0 +1,65 @@
+{% extends "page.html" %}
+{% load static %}
+{% load filters %}
+
+{% block title %}
+    Raw Materials Order Detail (rmo)
+{% endblock %}
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'alexander/rmo.css' %}" />
+{% endblock %}
+{% block content %}
+    <section id="order_detail-page">
+        <header id="title">
+            <h2 class="page-title">הזמנה מספר {{ order.id }}</h2>
+        </header>
+        <div class="order-detail-container">
+            <div id="order-detail-title">
+
+                <p> <strong> תאריך הזמנה : </strong> {{ order.Date |date:"d/m/Y" }} | <strong> הזמנה נוצרה על ידי : </strong> {{ order.Created_By.Employee }} </p>
+            </div>
+        </div>
+        <div class="order-table-container">
+            {% for supplier, products in supplier_products.items %}
+                <div class="supplier-order-section">
+                    <h2>שם הספק : {{ supplier.Name }}</h2>
+                    <p> <strong> טלפון  : </strong> {{ supplier.phone }} | <strong> אימייל    : </strong> {{ supplier.Email }} </p>
+                    <div class="order-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>מק"ט</th>
+                                <th>שם פריט</th>
+                                <th>כמות</th>
+                                <th>יחידה</th>
+                                <th>מחיר</th>
+                                <th>סה"כ למוצר</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                                <tr>
+                                    <td>{{ product.Item.id }}</td>
+                                    <td>{{ product.Item.Material_Name }}</td>
+                                    <td>{{ product.Quantity }}</td>
+                                    <td>{{ product.Item.Unit }}</td>
+                                    <td>{{ product.Item.Price }}</td>
+                                    <td>{{ product.Quantity|multiply:product.Item.Price }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+        </div>
+        <section id="summary">
+            <div class="total-order-price">
+                <strong>סה"כ סכום הזמנה:</strong> {{ total_sum }} <strong> ש"ח </strong>
+            </div>
+            <div class="created-by">
+                <strong>הזמנה נוצרה על ידי : </strong>   {{ order.Created_By }} 
+        </section>
+
+    </section>
+{% endblock %}

@@ -1,0 +1,174 @@
+{% extends "page.html" %}
+{%load static %}
+
+{% block title %}
+   sales report page
+{% endblock %}
+{% block css_files %}
+ <link rel="stylesheet" href="{% static "alexander/report_detail.css" %}" />
+{% endblock %}
+{%block content %}
+    <section id="single-report-page-short-version">
+        <header id="title">
+            <h2 class="page-title">  דוח מכירות אלכסנדר {{start_date|date:"d/m/Y"}} - {{end_date |date:"d/m/Y"}}</h2>
+            <h2 class="report-type">סוג דוח: 
+                {% if Report_Type == '1' %}
+                    דוח מצומצם  
+                {% elif Report_Type == '2' %}
+                    דוח מלא 
+                {% endif %}
+            </h2>
+        </header>
+        <div id="details">
+            <table id="order-details-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            סוג הזמנה : 
+                            {% if Order_Type == '3' %}
+                                הזמנות קופה בלבד
+                            {% elif Order_Type == '2' %}
+                                הזמנות אונליין בלבד
+                            {% elif Order_Type == '1' %}
+                                כל ההזמנות
+                            {% endif %} 
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if Order_Type == '3' %}
+                    <tr>
+                        <td>מספר הזמנות דלפק:</td>
+                        <td>{{ distinct_desk_orders_count }}</td>
+                    </tr>
+                    <tr>
+                        <td>סכום הזמנות:</td>
+                        <td>{{ total_desk_orders_sum }}</td>
+                    </tr>
+                    {% elif Order_Type == '2' %}
+                    <tr>
+                        <td>מספר הזמנות אונליין:</td>
+                        <td>{{ distinct_online_orders_count }}</td>
+                    </tr>
+                    <tr>
+                        <td>סכום הזמנות:</td>
+                        <td>{{ total_online_orders_sum }}</td>
+                    </tr>
+                    {% elif Order_Type == '1' %}
+                    <tr>
+                        <td>סה"כ הזמנות:</td>
+                        <td>{{ distinct_orders_count }}</td>
+                    </tr>
+                    <tr>
+                        <td>מתוכן הזמנות דלפק:</td>
+                        <td>{{ distinct_desk_orders_count }}</td>
+                    </tr>
+                    <tr>
+                        <td>מתוכן הזמנות אונליין:</td>
+                        <td>{{ distinct_online_orders_count }}</td>
+                    </tr>
+                    <tr>
+                        <td>סכום הזמנות קופה:</td>
+                        <td>{{ total_desk_orders_sum }} ש"ח </td>
+                    </tr>
+                    <tr>
+                        <td>סכום הזמנות אונליין:</td>
+                        <td>{{ total_online_orders_sum }} ש"ח </td>
+                    </tr>
+                    <tr>
+                        <td>סך הכל:</td>
+                        <td>{{ total_desk_orders_sum | add:total_online_orders_sum }} ש"ח </td>
+                    {% endif %} 
+                </tbody>
+            </table>
+        </div>    
+        <div id="products">  
+            <h2>מוצרים וכמויות בהזמנות</h2>    
+            {% if Order_Type == '3' %}
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>שם מוצר</th>
+                        <th>כמות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product_Name, quantity in desk_products_quantity_dict.items %}
+                    <tr>
+                        <td>{{ product_Name }}</td>
+                        <td>{{ quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% elif Order_Type == '2' %}
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>שם מוצר</th>
+                        <th>כמות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product_Name, quantity in online_products_quantity_dict.items %}
+                    <tr>
+                        <td>{{ product_Name }}</td>
+                        <td>{{ quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% elif Order_Type == '1' %}
+            <table class="products-table">
+                <thead>
+                    <tr>
+                        <th>שם מוצר</th>
+                        <th>כמות</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product_Name, quantity in products_quantity_dict.items %}
+                    <tr>
+                        <td>{{ product_Name }}</td>
+                        <td>{{ quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+        
+    </section>
+    <section id="single-report-page-full-version">
+        {% if Report_Type == "2" %}
+            <h2>פירוט הזמנות</h2>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>תאריך יצירת הזמנה</th>
+                        <th>סוג הזמנה</th>
+                        <th>שם לקוח</th>
+                        <th>סכום הזמנה</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Order, Total in Order_Dict.items %}
+                    <tr>
+                        <td>{{ Order.Order_Date | date:"d/m/Y" }}</td>
+                        <td>
+                            {% if Order.Order_Type == 'desk_order' %}
+                                הזמנה דלפק
+                            {% elif Order.Order_Type == 'online_order' %}
+                                הזמנה אונליין
+                            {% endif %}
+                        </td>
+                        <td>{{ Order.Customer_Name }} {{ Order.Customer_Last_Name}}</td>
+                        <td>{{ Total }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </section>
+    
+{% endblock %}

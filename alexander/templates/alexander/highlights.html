@@ -1,0 +1,52 @@
+{% extends "page.html" %}
+{% load static %}
+
+{% block title %}
+ highlights page
+{% endblock %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static "alexander/highlights.css" %}" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap">
+{% endblock %}
+
+{% block content %}
+<section id="highlights">
+    <header id="title">
+        <div class="header-container">
+            <a href="{% url 'control-page' %}" class="btn" id="back-btn">
+                <img src="{% static 'alexander/images/back.png' %}" alt="View Details">
+                <span>חזור לעמוד הבקרה</span>
+            </a>
+            <h2 class="page-title">הודעות מנהל</h2>
+            <div class="spacer"></div>
+        </div>
+    </header>
+    
+    <table id="highlights-table">
+        <thead>
+            <tr>
+                <th> מספר הודעה</th>
+                <th>תאריך יעד </th>
+                <th>טקסט הודעה</th>
+                <th> מחק הודעה </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in highlights %}
+                <td> {{item.id}} </td>
+                <td> {{item.Due_Date|date:"d/m/Y"}} </td>
+                <td> {{item.Text}} </td>
+                <td> 
+                    <form method="post" action="{% url 'remove-highlight-page'  item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" id="remove-btn">מחק הודעה</button>
+                    </form>   
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
