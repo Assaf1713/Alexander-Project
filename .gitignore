@@ -1,0 +1,29 @@
+# Byte-compiled / optimized files
+*.py[cod]
+__pycache__/
+
+# Django SQLite Database (if you're using it locally)
+db.sqlite3
+
+# Environment variables
+.env
+
+# Static files (if they are generated)
+/static/
+
+# Media files (optional)
+/media/
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
+
+# macOS-specific files
+.DS_Store
+
+# IDE-specific files
+.vscode/
+.idea/
