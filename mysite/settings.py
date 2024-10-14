@@ -28,7 +28,7 @@ SECRET_KEY = getenv(
 DEBUG = getenv("IS_DEVELOPMENT", True)
 
 ALLOWED_HOSTS = [
-    getenv("APP_HOST", "localhost"),
+    getenv("APP_HOST", ""),
 ]
 
 
