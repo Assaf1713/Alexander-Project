@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://localhost'
+        default=os.environ.get('DATABASE_URL', 'postgres://localhost')
     )
 }
 
