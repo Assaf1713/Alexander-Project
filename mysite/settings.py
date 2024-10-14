@@ -49,11 +49,11 @@ SESSION_COOKIE_AGE = 28800
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',  # This is needed
+    'django.contrib.sessions.middleware.SessionMiddleware',  
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',  # This is needed
-    'django.contrib.messages.middleware.MessageMiddleware',  # This is needed
+    'django.contrib.auth.middleware.AuthenticationMiddleware',  
+    'django.contrib.messages.middleware.MessageMiddleware', 
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -167,8 +167,7 @@ STATICFILES_DIRS = [
 # Configure WhiteNoise middleware to serve static files
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this
-    # other middleware...
+    'whitenoise.middleware.WhiteNoiseMiddleware',  
 ]
 
 # Heroku settings
