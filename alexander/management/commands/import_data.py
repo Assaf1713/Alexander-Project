@@ -15,7 +15,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f'File not found: {json_file_path}'))
             return
 
-        with open(json_file_path, 'r') as file:
+        with open(json_file_path, 'r', encoding='utf-16') as file:
             data = json.load(file)
 
             for item in data:
